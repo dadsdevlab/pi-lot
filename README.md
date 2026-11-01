@@ -4,6 +4,12 @@ Chat panel in the secondary sidebar (the right panel Copilot uses). Windows 98 /
 
 The page in `poc/` is a fake. Open `poc/index.html` in a browser to poke at the layout without VS Code. The extension loads that same page.
 
+## Download
+
+The [latest release](../../releases/latest) has a `.vsix`. Install it with **Extensions: Install from VSIX…**.
+
+That link is empty until a release exists. See [Release](#release).
+
 ## Install
 
 You need:
@@ -28,7 +34,7 @@ In that window, run **Open Pi-lot** from the command palette, or open the second
 
 98.css loads from unpkg. If the host has no network, the window is unstyled.
 
-To install a package instead of using the debugger: `npm run package`, then **Extensions: Install from VSIX…**. That command also bumps the patch version.
+To install a package instead of using the debugger: `npm run package`, then **Extensions: Install from VSIX…**. That writes `pi-lot-<version>-dev.<time>.vsix` and does not change `package.json`.
 
 ## Change it
 
@@ -41,3 +47,17 @@ To install a package instead of using the debugger: `npm run package`, then **Ex
 The webview posts `prompt`, `model`, `think`, and `new`. The extension turns those into Pi's `prompt`, `set_model`, `set_thinking_level`, and `new_session`. Model values are `provider` + tab + model id. Thinking levels come from Pi.
 
 `npm test` is not wired. The line splitter check is `node --test test/lines.test.mjs`, and it imports `out/lines.js`, so compile first.
+
+## Release
+
+`.github/workflows/release.yml` runs when a `v*` tag is pushed. It compiles, packs a `.vsix` without bumping the version, and publishes a GitHub release. That release shows on the repository home page.
+
+The workflow file has to already be on the default branch. The tag must match `version` in `package.json`, because the filename comes from that field, not the tag.
+
+```bash
+# set "version" in package.json, commit it, then:
+git tag v0.0.5
+git push origin v0.0.5
+```
+
+`npm run package` is only the local dev pack. It uses `<version>-dev.<time>`, which sorts below the plain version, so a later release of the same `package.json` version replaces it. It does not change `package.json` or the tag.

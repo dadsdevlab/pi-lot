@@ -43,7 +43,7 @@
   "scripts": {
     "compile": "tsc -p .",
     "watch": "tsc -p . -w",
-    "package": "npm run compile && vsce package patch --no-git-tag-version --allow-missing-repository --skip-license"
+    "package": "npm run compile && node -e \"const {execFileSync}=require('child_process'); const v=require('./package.json').version+'-dev.'+Date.now(); execFileSync(process.execPath,['node_modules/@vscode/vsce/vsce','package',v,'--no-update-package-json','--no-git-tag-version','--allow-missing-repository','--skip-license'],{stdio:'inherit'})\""
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
