@@ -20,7 +20,7 @@ Windows 98 / AIM transcript, not chat bubbles. 98.css for chrome. Times New Roma
 
 ## Packaging
 
-`npm run package` compiles and writes `pi-lot-<version>-dev.<time>.vsix`. It does not change `package.json`. The GitHub release workflow packs the plain version. There is no LICENSE or repository field (`--skip-license`, `--allow-missing-repository`). `.vscodeignore` drops `src`, `tsconfig.json`, and source maps. Do not run either unless a package was asked for.
+`npm run package` compiles and writes `pi-lot-<version>-dev.<time>.vsix`. It does not change `package.json`. The GitHub release workflow packs the plain version. There is no LICENSE (`--skip-license`). `repository` is set so vsce can rewrite the README release link. `.vscodeignore` drops `src`, `tsconfig.json`, and source maps. Do not run either unless a package was asked for.
 
 ## Pi
 
