@@ -1,0 +1,54 @@
+{
+  "name": "pi-lot",
+  "displayName": "Pi-lot",
+  "description": "Chat panel in the secondary sidebar.",
+  "version": "0.0.4",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.106.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pi-lot.open",
+        "title": "Open Pi-lot",
+        "icon": "$(comment-discussion)"
+      }
+    ],
+    "viewsContainers": {
+      "secondarySidebar": [
+        {
+          "id": "pi-lot",
+          "title": "Pi-lot",
+          "icon": "$(comment-discussion)"
+        }
+      ]
+    },
+    "views": {
+      "pi-lot": [
+        {
+          "type": "webview",
+          "id": "pi-lot.chat",
+          "name": "Chat",
+          "icon": "$(comment-discussion)"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -p . -w",
+    "package": "npm run compile && vsce package patch --no-git-tag-version --allow-missing-repository --skip-license"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/vscode": "^1.106.0",
+    "@vscode/vsce": "^3.7.0",
+    "typescript": "^5.9.3"
+  }
+}

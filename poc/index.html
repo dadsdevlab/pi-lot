@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pi-lot - Instant Message</title>
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="window panel">
+    <div class="title-bar">
+      <div class="title-bar-text">Pi-lot - Instant Message</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize" disabled></button>
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body chat">
+      <div class="field-row model-row">
+        <label for="model">Model:</label>
+        <select id="model">
+          <option>pi-lot-small</option>
+          <option selected>pi-lot</option>
+          <option>pi-lot-large</option>
+        </select>
+        <label for="think">Think:</label>
+        <select id="think">
+          <option>low</option>
+          <option>medium</option>
+          <option selected>high</option>
+        </select>
+        <button type="button" id="new-chat">New Chat</button>
+      </div>
+      <div id="thread" class="sunken-panel thread" aria-live="polite"></div>
+      <form id="composer" class="composer">
+        <textarea id="input" rows="3" aria-label="Message" autofocus></textarea>
+        <button type="submit" id="send" class="default">Send</button>
+      </form>
+    </div>
+    <div class="status-bar">
+      <p class="status-bar-field" id="in-tokens">In: 0</p>
+      <p class="status-bar-field" id="out-tokens">Out: 0</p>
+      <p class="status-bar-field" id="context">Ctx: 0%</p>
+      <p class="status-bar-field" id="selection">pi-lot high</p>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
